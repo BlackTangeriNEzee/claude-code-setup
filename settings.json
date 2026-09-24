@@ -1,0 +1,162 @@
+{
+  "model": "claude-fable-5-1[1m]",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/guard-git.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking git safety rules"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/check-file-content.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking code hygiene rules"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/cn-slop-check.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking Chinese slop rules"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/no-undone-restate.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking closeout for undone-work restating"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/checkpoint-guard.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking for fake checkpoints"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/context-watch.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking remaining context"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/handover-idle.py\"",
+            "timeout": 10,
+            "statusMessage": "Arming the idle handover timer"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/handover-load.py\"",
+            "timeout": 15,
+            "statusMessage": "Loading handover from the previous session"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/.claude/statusline.sh",
+    "refreshInterval": 30
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "figma@claude-plugins-official": false,
+    "cloudflare@cloudflare": false,
+    "<MACHINE_SPECIFIC_PLUGIN>": "<REPLACE_WITH_LOCAL_PLUGIN_SELECTION>"
+  },
+  "deniedMcpServers": [
+    {
+      "serverName": "claude.ai Canva"
+    },
+    {
+      "serverName": "claude.ai Figma"
+    },
+    {
+      "serverName": "claude.ai Zoom for Claude"
+    },
+    {
+      "serverName": "claude.ai Google Drive"
+    },
+    {
+      "serverName": "claude.ai Spotify"
+    },
+    {
+      "serverName": "plugin:data:definite"
+    },
+    {
+      "serverName": "plugin:data:bigquery"
+    }
+  ],
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/anthropics/claude-plugins-official.git"
+      }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/anthropics/skills.git"
+      }
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "high"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "medium"
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "light",
+  "inputNeededNotifEnabled": true
+}
