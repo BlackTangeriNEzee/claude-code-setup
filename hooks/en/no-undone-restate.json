@@ -1,0 +1,17 @@
+{
+  "patterns": [
+    {
+      "label": "describing work not done",
+      "regex": "(?i)\\b(?:i|we)\\s+(?:(?:did|do|have|had)\\s*n[o’']?t|(?:did|do|have|had)\\s+not)\\s+(?:\\w+\\s+){0,2}(?:touch|change|modify|edit|alter|update|open|run|rename|remove)\\b|\\bleft\\s+(?:it|them|that|those|the\\s+rest)?\\s*(?:untouched|unchanged|as[- ]is|alone)\\b|\\bno\\s+changes?\\s+(?:were\\s+)?made\\s+to\\b|\\bout\\s+of\\s+scope\\s+(?:for|in|here|but|if|so)\\b|\\bnot\\s+(?:in|part\\s+of)\\s+(?:this|the\\s+current)\\s+(?:change|scope|pass|task|round)\\b"
+    },
+    {
+      "label": "restating earlier content",
+      "regex": "(?i)\\bas\\s+(?:i\\s+|we\\s+)?(?:mentioned|said|noted|stated|explained|described|wrote)\\s+(?:earlier|above|before|previously)\\b|\\bas\\s+(?:noted|mentioned|stated|said)\\s+(?:earlier|above|before|previously)\\b|\\bto\\s+(?:reiterate|repeat|recap|restate)\\b|\\b(?:again|once\\s+more)\\s*[,:]\\s*(?:to\\s+)?(?:reiterate|repeat|recap)\\b|\\b(?:i|we)\\s+(?:already\\s+)?(?:mentioned|said|noted|flagged)\\s+(?:this|that|it)\\s+(?:earlier|above|before|previously)\\b|\\bworth\\s+(?:repeating|restating|reiterating)\\b|\\bjust\\s+to\\s+(?:reiterate|repeat|recap)\\b|\\b(?:one|a)\\s+correction\\s+(?:to|on|from)\\b|\\bto\\s+correct\\s+(?:myself|an?\\s+earlier)\\b|\\b(?:reminder|repeating)\\s+that\\s+(?:i|we|the)\\b"
+    },
+    {
+      "label": "stressing lack of access",
+      "regex": "(?i)\\b(?:i|we)\\s+(?:do\\s*n[o’']?t|do\\s+not)\\s+have\\s+(?:access|permission|visibility|the\\s+ability)\\b|\\b(?:i|we)\\s+have\\s+no\\s+(?:access|visibility|way\\s+to\\s+(?:see|reach|read))\\b|\\b(?:i|we)\\s*(?:'|’)?\\s*(?:m|are)\\s+not\\s+able\\s+to\\s+(?:access|see|reach|read)\\b|\\b(?:i|we)\\s+(?:can\\s*n[o’']?t|cannot)\\s+(?:access|reach)\\s+(?:your|the|that|this)\\b"
+    }
+  ],
+  "reason": "Closeout check failed, hit: {hits}. The last reply is already on screen, so do not reprint it. Send one short correction: the fixed sentences only, nothing that was fine. For sentences that should go (work not done, files not touched, todos pushed back, points already made), say in one line that they are withdrawn. State a real blocker once as \"X failed, because Y\"."
+}
